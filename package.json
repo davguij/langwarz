@@ -14,7 +14,7 @@
   "license": "MIT",
   "main": "",
   "scripts": {
-    "clean": "rimraf node_modules doc && npm cache clean",
+    "clean": "rimraf node_modules doc typings && npm cache clean",
     "clean-install": "npm run clean && npm install",
     "clean-start": "npm run clean && npm start",
     "watch": "webpack --watch --progress --profile --colors --display-error-details --display-cached",
@@ -27,16 +27,14 @@
     "test": "karma start",
     "ci": "npm run e2e && npm run test",
     "docs": "typedoc  --options typedoc.json  src/**/*.ts",
-    "start": "npm run server"
+    "start": "npm run server",
+    "postinstall": "typings install"
   },
   "dependencies": {
     "angular2": "2.0.0-alpha.53",
     "core-js": "^1.2.6",
-    "es6-shim": "^0.33.13",
-    "jquery": "^2.1.4",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-alpha.14",
-    "typings": "^0.3.1",
     "zone.js": "0.5.8"
   },
   "devDependencies": {
@@ -61,9 +59,11 @@
     "style-loader": "^0.13.0",
     "ts-loader": "^0.7.2",
     "tsconfig-lint": "^0.2.0",
+    "tslint": "^3.2.0",
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.3.12",
     "typescript": "^1.7.3",
+    "typings": "^0.3.1",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.12.1"
