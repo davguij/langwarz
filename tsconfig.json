@@ -18,6 +18,7 @@
     "src/app/providers/title.spec.ts",
     "src/app/providers/title.ts",
     "src/app/home/home.ts",
+    "src/app/data/fighters.ts",
     "src/bootstrap.ts",
     "src/vendor.ts"
   ],

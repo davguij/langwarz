@@ -3,12 +3,15 @@
  */
 import {Component} from 'angular2/core';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http} from 'angular2/http';
+import {Http} from 'angular2/http'; // LA NECESITO PONER AQUI PARA EL PROVIDER???
 import {FORM_PROVIDERS} from 'angular2/common';
 
-import {Title} from './providers/title';
+import {GHApi} from './providers/ghapi';
+import {Title} from './providers/title'; // FUERA!!!
+
 import {XLarge} from './directives/x-large';
 import {Home} from './home/home';
+import {Fight} from './fight/fight';
 
 /*
  * App Component
@@ -20,10 +23,10 @@ import {Home} from './home/home';
   // where, in this case, selector is the string 'app'
   selector: 'app', // <app></app>
   // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [ FORM_PROVIDERS, Title],
+  providers: [FORM_PROVIDERS, Title, GHApi],
   // We need to tell Angular's compiler which directives are in our template.
   // Doing so will allow Angular to attach our behavior to an element
-  directives: [ ROUTER_DIRECTIVES, XLarge ],
+  directives: [ROUTER_DIRECTIVES, XLarge],
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [],
   // Our list of styles in our component. We may add more to compose many styles together
@@ -37,26 +40,15 @@ import {Home} from './home/home';
 
   `],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: `
-    <header>
-      <h1 class="title">Hello {{ title.value }}</h1>
-    </header>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-
-    <footer x-large>
-      WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a>
-    </footer>
-  `
+  template: require('./app.html')
 })
 @RouteConfig([
-  { path: '/', component: Home, name: 'Home' }
+  { path: '/', component: Home, name: 'Home' },
+  { path: '/fight', component: Fight, name: 'Fight' }
 ])
 export class App {
   url: string = 'https://twitter.com/AngularClass';
-  constructor(public title: Title) {}
+  constructor(public title: Title) { }
 }
 
 /*
